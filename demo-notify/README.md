@@ -1,5 +1,10 @@
 
-## 相關連結
+## 原始討論
+
+* [#13 回覆: 如何安裝 StarUML-v2.8.0-64-bit.deb ？](https://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=356984#forumpost356984)
+
+
+## 參考連結
 
 * Arch Wiki / [Desktop notifications](https://wiki.archlinux.org/index.php/Desktop_notifications)
 
@@ -174,3 +179,65 @@ $ gcc -o app main.c $(pkg-config --cflags --libs libnotify)
 * [https://developer.gnome.org/gtk3/stable/](https://developer.gnome.org/gtk3/stable/)
 * [https://developer.gnome.org/gtk3/stable/gtk-compiling.html](https://developer.gnome.org/gtk3/stable/gtk-compiling.html)
 * [GNOME Developer Platform Demos](https://developer.gnome.org/gnome-devel-demos/stable/index.html.en) / [Platform Demos in C](https://developer.gnome.org/gnome-devel-demos/stable/c.html.en)
+
+
+執行
+
+``` sh
+$ file app
+```
+
+顯示
+
+```
+app: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=3f9d12e9850b819b961d1237c46701d8c74dfe09, not stripped
+```
+
+執行
+
+``` sh
+$ ldd app
+```
+
+顯示
+
+```
+linux-vdso.so.1 =>  (0x00007ffdfaf16000)
+libnotify.so.4 => /usr/lib/x86_64-linux-gnu/libnotify.so.4 (0x00007fccb7a7c000)
+libgobject-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0 (0x00007fccb7829000)
+libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fccb760b000)
+libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fccb7242000)
+libgdk_pixbuf-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0 (0x00007fccb7020000)
+libgio-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0 (0x00007fccb6c97000)
+libglib-2.0.so.0 => /lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x00007fccb6986000)
+libffi.so.6 => /usr/lib/x86_64-linux-gnu/libffi.so.6 (0x00007fccb677e000)
+/lib64/ld-linux-x86-64.so.2 (0x000055b505ff6000)
+libgmodule-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0 (0x00007fccb6579000)
+libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fccb6270000)
+libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007fccb6056000)
+libselinux.so.1 => /lib/x86_64-linux-gnu/libselinux.so.1 (0x00007fccb5e33000)
+libresolv.so.2 => /lib/x86_64-linux-gnu/libresolv.so.2 (0x00007fccb5c18000)
+libpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007fccb59a8000)
+libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fccb57a3000)
+```
+
+執行
+
+``` sh
+$ objdump -p app | grep NEEDED
+```
+
+顯示
+
+```
+NEEDED               libnotify.so.4
+NEEDED               libgobject-2.0.so.0
+NEEDED               libpthread.so.0
+NEEDED               libc.so.6
+```
+
+
+## manpage
+
+* $ man [gcc](http://manpages.ubuntu.com/manpages/xenial/en/man1/gcc.1.html)
+* $ man [pkg-config](http://manpages.ubuntu.com/manpages/xenial/en/man1/pkg-config.1.html)
