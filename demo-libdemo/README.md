@@ -7,6 +7,8 @@
 ## 參考連結
 
 * [[心得] 用gcc 自製 Library](https://www.ptt.cc/bbs/LinuxDev/M.1162669989.A.2E6.html)
+* http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html
+* http://www.adp-gmbh.ch/cpp/gcc/create_lib.html
 
 
 ## 操作步驟
