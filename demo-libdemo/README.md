@@ -19,13 +19,6 @@
 $ ./lib-build.sh
 ```
 
-顯示
-
-```
-hello
-hi
-```
-
 執行
 
 ``` sh
@@ -118,8 +111,15 @@ LD_LIBRARY_PATH=. ./app
 
 所以也可以執行
 
-```
+``` sh
 $ ./run.sh
+```
+
+顯示
+
+```
+hello
+hi
 ```
 
 執行
