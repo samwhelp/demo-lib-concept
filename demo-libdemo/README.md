@@ -19,32 +19,6 @@
 $ ./lib-build.sh
 ```
 
-執行
-
-``` sh
-$ ./app
-```
-
-顯示
-
-```
-./app: error while loading shared libraries: libdemo.so.1: cannot open shared object file: No such file or directory
-```
-
-執行
-
-``` sh
-LD_LIBRARY_PATH=. ./app
-```
-
-上面指令，編寫到「[run.sh](run.sh)」
-
-所以也可以執行
-
-```
-$ ./run.sh
-```
-
 顯示
 
 ```
@@ -120,6 +94,32 @@ SONAME               libdemo.so.1
 
 ``` sh
 $ ./main-build.sh
+```
+
+執行
+
+``` sh
+$ ./app
+```
+
+顯示
+
+```
+./app: error while loading shared libraries: libdemo.so.1: cannot open shared object file: No such file or directory
+```
+
+執行
+
+``` sh
+LD_LIBRARY_PATH=. ./app
+```
+
+上面指令，編寫到「[run.sh](run.sh)」
+
+所以也可以執行
+
+```
+$ ./run.sh
 ```
 
 執行
