@@ -1,0 +1,176 @@
+
+## 相關連結
+
+* Arch Wiki / [Desktop notifications](https://wiki.archlinux.org/index.php/Desktop_notifications)
+
+
+## 相關套件
+
+* [libnotify4](http://packages.ubuntu.com/xenial/libnotify4)
+* [libnotify-dev](http://packages.ubuntu.com/xenial/libnotify-dev)
+* [libnotify-doc](http://packages.ubuntu.com/xenial/libnotify-doc)
+
+執行下面指令安裝
+
+``` sh
+$ sudo apt-get install libnotify-dev libnotify-doc
+```
+
+執行
+
+``` sh
+$ dpkg -L libnotify4
+```
+
+顯示
+
+```
+/.
+/usr
+/usr/share
+/usr/share/doc
+/usr/share/doc/libnotify4
+/usr/share/doc/libnotify4/AUTHORS
+/usr/share/doc/libnotify4/changelog.Debian.gz
+/usr/share/doc/libnotify4/copyright
+/usr/share/doc/libnotify4/NEWS.gz
+/usr/lib
+/usr/lib/x86_64-linux-gnu
+/usr/lib/x86_64-linux-gnu/libnotify.so.4.0.0
+/usr/lib/x86_64-linux-gnu/libnotify.so.4
+```
+
+執行
+
+``` sh
+$ ls /usr/lib/x86_64-linux-gnu/libnotify.so.4 -l
+```
+
+顯示
+
+```
+lrwxrwxrwx 1 root root 18 Apr 24  2016 /usr/lib/x86_64-linux-gnu/libnotify.so.4 -> libnotify.so.4.0.0
+```
+
+執行
+
+``` sh
+$ file /usr/lib/x86_64-linux-gnu/libnotify.so.4
+```
+
+顯示
+
+```
+/usr/lib/x86_64-linux-gnu/libnotify.so.4: symbolic link to libnotify.so.4.0.0
+```
+
+執行
+
+``` sh
+$ dpkg -L libnotify-dev
+```
+
+顯示
+
+```
+/.
+/usr
+/usr/share
+/usr/share/gir-1.0
+/usr/share/gir-1.0/Notify-0.7.gir
+/usr/share/doc
+/usr/share/doc/libnotify-dev
+/usr/share/doc/libnotify-dev/copyright
+/usr/include
+/usr/include/libnotify
+/usr/include/libnotify/notify-enum-types.h
+/usr/include/libnotify/notification.h
+/usr/include/libnotify/notify.h
+/usr/include/libnotify/notify-features.h
+/usr/lib
+/usr/lib/x86_64-linux-gnu
+/usr/lib/x86_64-linux-gnu/pkgconfig
+/usr/lib/x86_64-linux-gnu/pkgconfig/libnotify.pc
+/usr/lib/x86_64-linux-gnu/libnotify.a
+/usr/share/doc/libnotify-dev/AUTHORS
+/usr/share/doc/libnotify-dev/changelog.Debian.gz
+/usr/share/doc/libnotify-dev/NEWS.gz
+/usr/lib/x86_64-linux-gnu/libnotify.so
+```
+
+執行
+
+``` sh
+$ dpkg -L libnotify-doc
+```
+
+顯示
+
+```
+/.
+/usr
+/usr/share
+/usr/share/gtk-doc
+/usr/share/gtk-doc/html
+/usr/share/gtk-doc/html/libnotify
+/usr/share/gtk-doc/html/libnotify/right.png
+/usr/share/gtk-doc/html/libnotify/ch01.html
+/usr/share/gtk-doc/html/libnotify/left.png
+/usr/share/gtk-doc/html/libnotify/index.html
+/usr/share/gtk-doc/html/libnotify/libnotify-notify.html
+/usr/share/gtk-doc/html/libnotify/NotifyNotification.html
+/usr/share/gtk-doc/html/libnotify/api-index-full.html
+/usr/share/gtk-doc/html/libnotify/index.sgml
+/usr/share/gtk-doc/html/libnotify/libnotify.devhelp2
+/usr/share/gtk-doc/html/libnotify/style.css
+/usr/share/gtk-doc/html/libnotify/home.png
+/usr/share/gtk-doc/html/libnotify/annotation-glossary.html
+/usr/share/gtk-doc/html/libnotify/up.png
+/usr/share/gtk-doc/html/libnotify/api-index-deprecated.html
+/usr/share/doc
+/usr/share/doc/libnotify-doc
+/usr/share/doc/libnotify-doc/AUTHORS
+/usr/share/doc/libnotify-doc/changelog.Debian.gz
+/usr/share/doc/libnotify-doc/copyright
+/usr/share/doc/libnotify-doc/NEWS.gz
+```
+
+執行下面指令
+
+``` sh
+$ firefox /usr/share/gtk-doc/html/libnotify/index.html
+```
+
+關於「firefox」可以改為「lynx」或「w3m」，或是參考這篇「[回覆 #3](https://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=355920#forumpost355920)」列的[參考連結](https://wiki.archlinux.org/index.php?title=List_of_applications/Internet&redirect=no#Web_browsers)，裡面列的瀏覽器。
+
+## 編譯參數
+
+可以參考「/usr/lib/x86_64-linux-gnu/pkgconfig/libnotify.pc」這個檔
+
+執行
+
+``` sh
+$ pkg-config --cflags --libs libnotify
+```
+
+顯示
+
+``` sh
+-pthread -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -lnotify -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0
+```
+
+
+執行下面指令，編譯「main.c」，寫成「[build.sh](build.sh)」。
+
+``` sh
+$ gcc -o app main.c $(pkg-config --cflags --libs libnotify)
+```
+
+編譯可以參考「[這篇](https://www.ubuntu-tw.org/modules/newbb/viewtopic.php?post_id=356758#forumpost356758)」裡面列的連結。
+
+
+* [https://developer.gnome.org/glib/stable/](https://developer.gnome.org/glib/stable/)
+* [https://developer.gnome.org/glib/stable/glib-compiling.html](https://developer.gnome.org/glib/stable/glib-compiling.html)
+* [https://developer.gnome.org/gtk3/stable/](https://developer.gnome.org/gtk3/stable/)
+* [https://developer.gnome.org/gtk3/stable/gtk-compiling.html](https://developer.gnome.org/gtk3/stable/gtk-compiling.html)
+* [GNOME Developer Platform Demos](https://developer.gnome.org/gnome-devel-demos/stable/index.html.en) / [Platform Demos in C](https://developer.gnome.org/gnome-devel-demos/stable/c.html.en)
