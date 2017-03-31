@@ -17,3 +17,10 @@ $ sudo apt-get install build-essential
 
 * [demo-libdemo](demo-libdemo)
 * [demo-notify](demo-notify)
+
+
+## manpage
+
+* $ man [ld.so](http://manpages.ubuntu.com/manpages/xenial/en/man8/ld.so.8.html)
+* $ man [ldd](http://manpages.ubuntu.com/manpages/xenial/en/man1/ldd.1.html)
+* $ man [ldconfig](http://manpages.ubuntu.com/manpages/xenial/en/man8/ldconfig.8.html)
